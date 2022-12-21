@@ -7,8 +7,10 @@ import Button from "./Button";
 // import PropTypes from 'prop-types'
 const Header = ({title}) => {
     const onClick = (e) => {
-        console.log(e);
+        console.log('Click');
+        
     }
+
   return (
     <header className="header">
         {/* <h1 style={headingStyle}> */}
