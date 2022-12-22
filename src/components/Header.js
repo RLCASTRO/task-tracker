@@ -5,11 +5,7 @@ import Button from "./Button";
 // you can define a default type for the propertie you're passing by adding the prop-types since JS does not need to define type in variable declaration.
 //and adding Header.propTypes obj below
 // import PropTypes from 'prop-types'
-const Header = ({title}) => {
-    const onClick = (e) => {
-        console.log('Click');
-        
-    }
+const Header = ({title, onAdd, showAdd}) => {
 
   return (
     <header className="header">
@@ -18,7 +14,8 @@ const Header = ({title}) => {
         {/* here I'm callint the onClick function inside the Button component. */}
         {/* <Button onClick='onClick' color='green' text='Add'/> */}
         {/* The onClick event here is passing the onClick function as a parameter, se we need to catch this inside the button component */}
-        <Button onClick={onClick} color='green' text='Add'/>
+        {/* <Button onClick={onAdd} color='green' text='Add'/> */}
+        <Button onClick={onAdd} color={showAdd? 'green' : 'black'} text={ showAdd ? 'Close' : 'Add' }  />
     </header>
   )
 }

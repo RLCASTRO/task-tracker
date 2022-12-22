@@ -1,8 +1,5 @@
 import PropTypes from 'prop-types'
 const Button = ({ color, text, onClick }) => {
-    // const onClick = (e) => {
-    //     // console.log(e)
-    // }
     return (
         <button
             style={{ backgroundColor: color }} 

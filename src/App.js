@@ -9,6 +9,7 @@ function App() {
   //we put it into the App component.
   //This way will assure the state is in the higher level and can be used for other components
   //As we're mapping the tasks inside the Tasks.js, dont forget to pass it as a props to the Tasks component
+  const [showAdd, setShowAdd] = useState(false)
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -58,8 +59,13 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
-      <AddTask onAdd={addTask} />
+      {/* here I'm passing a function as a prop to the Header component.
+      I have to catch this in the button component and triggers in the onClick event */}
+      <Header onAdd={() => setShowAdd(!showAdd)} showAdd={showAdd} />
+      {/* the AddTask show will be conditioned to the showTask state. Lets wrap it in a curly lbraces and create a conditional statement */}
+      {/* this is called conditional rendering */}
+      {/* this && simple ternary condition statement without the else part */}
+      { showAdd && <AddTask onAdd={addTask} />}
       {/* passing the tasks as props to Tasks.js */}
       {/* ternary operator to decide what to display when empty */}
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : 'No Tasks to Show'}
