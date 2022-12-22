@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
+import AddTask from "./components/AddTask";
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
     },
     {
       id: 2,
-      text: 'Meeding at School',
+      text: 'Meeting at School',
       day: 'Feb 6th at 1:30pm',
       reminder: true,
     },
@@ -28,6 +29,21 @@ function App() {
       reminder: false,
     },
   ])
+
+  //Add task
+  const addTask = (task) => {
+    //create a random id number for each task
+    const id = Math.floor(Math.random() * 10000) + 1
+
+    //this will concatenate the id in the task object
+    const newTask = {id, ...task}
+
+    // console.log(...tasks, newTask)
+    //add the new task to the end of the tasks array 
+    setTasks([...tasks, newTask])
+
+  }
+  
 
   //Delete Task
   const deleteTask = (id) => {
@@ -43,6 +59,7 @@ function App() {
   return (
     <div className="container">
       <Header />
+      <AddTask onAdd={addTask} />
       {/* passing the tasks as props to Tasks.js */}
       {/* ternary operator to decide what to display when empty */}
       {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : 'No Tasks to Show'}
